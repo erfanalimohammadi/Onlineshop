@@ -24,6 +24,65 @@ body {
   z-index: 999; /* Ensure sidebar is above other content */
 }
 
+.nav__cont {
+  position: fixed;
+  width: 60px;
+  top:0;
+  height: 100vh;
+  z-index: 100;
+  background-color: #202020;
+  overflow:hidden;
+  transition:width .3s ease;
+  cursor:pointer;
+  box-shadow:4px 7px 10px rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+}
+
+.nav__cont:hover {
+  width:200px;
+}
+
+.nav__cont:hover .menu-icon {
+  display: none;
+}
+
+.menu-icon {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 21px;
+  color: white;
+  cursor: pointer;
+  z-index: 101;
+  transform: scale(2.1);
+
+}
+
+.nav__cont .nav-link {
+  padding: 35px;
+  text-align: center;
+  font-size: 27px;
+  color: white;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.nav__cont .nav-link:hover {
+  color: #2197ff;
+  font-size: 18px;
+  transform: scale(1.1);
+}
+
+.nav__cont:not(:hover) .nav-link {
+  font-size: 0;
+  padding: 0;
+}
+
+.nav__cont .navbar-nav .nav-item {
+  margin-bottom: 35px; 
+}
+
 .ring {
   position: relative;
   width: 500px;
