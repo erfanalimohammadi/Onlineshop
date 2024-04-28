@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/User-Mangement/static/stylelogin.css">
+    <link rel="stylesheet" href="../static/stylelogin.css">
     
 </head>
 
@@ -60,7 +60,7 @@
     
     <!--ring div starts here-->
 
-<form action="http://localhost:5000/login" method="post">
+<form action="http://localhost:5000/loginmain" method="post">
 <div class="ring">
     <i style="--clr:#0007c6;"></i>
     <i style="--clr:#a8ffb1;"></i>
@@ -68,10 +68,10 @@
     <div class="login">
       <h2>Login</h2>
       <div class="inputBx">
-        <input type="text" placeholder="Username">
+        <input type="text" for="username" placeholder="Username">
       </div>
       <div class="inputBx">
-        <input type="password" placeholder="Password">
+        <input type="password" for="password" placeholder="Password">
       </div>
       <div class="inputBx">
         <input type="submit" value="Sign in">
