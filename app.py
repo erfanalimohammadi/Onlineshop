@@ -98,6 +98,7 @@ def forgot_password():
     # اگر درخواست POST نبود، به صفحه forgotpassword برمی‌گردیم
     return render_template('forgotpassword.html')
 
+
 @app.route('/forgotpassword2', methods=['POST'])
 def reset_password():
     if request.method == 'POST':
