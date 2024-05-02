@@ -149,7 +149,7 @@
     background-color: #5776ff;
   }
   tbody tr:hover {
-    background-color: rgba(137, 63, 255, 0.3);
+    background-color: rgba(137, 63, 255, 0.575);
   }
   tbody td {
     position: relative;
@@ -161,7 +161,7 @@
     right: 0;
     top: -9999px;
     bottom: -9999px;
-    background-color: rgba(187, 77, 255, 0.2);
+    background-color: rgba(187, 77, 255, 0.47);
     z-index: -1;
   }
   
