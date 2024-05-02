@@ -5,91 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-
-        .body{
-            background-color: #202020;
-        }
-        .nav__cont {
-            position: fixed;
-            width: 60px;
-            top: 60px;
-            height: 100vh;
-            z-index: 100;
-            background-color: #202020;
-            overflow:hidden;
-            transition:width .3s ease;
-            cursor:pointer;
-            box-shadow:4px 7px 10px rgba(0,0,0,.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .nav__cont:hover {
-            width:200px;
-        }
-
-        .nav__cont:hover .menu-icon {
-            display: none;
-        }
-
-        .menu-icon {
-            display: block;
-            position: absolute;
-            top: 14px;
-            left: 21px;
-            color: white;
-            cursor: pointer;
-            z-index: 101;
-            transform: scale(1.7);
-        }
-        
-        .nav__cont .nav-link {
-            padding: 35px;
-            text-align: center;
-            font-size: 16px;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .nav__cont .nav-link:hover {
-            color: #54a4ff;
-            font-size: 18px;
-            transform: scale(1.1);
-        }
-
-        .nav__cont:not(:hover) .nav-link {
-            font-size: 0;
-            padding: 0;
-        }
-        .weather-container {
-            position: fixed;
-            top: 70px;
-            right: 0;
-            width: 200px; /* Adjust as needed */
-            height: 21vh;
-            background-color: #202020;
-            color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        .strip-container {
-            position: fixed;
-            top: 0;
-            left: 0px;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-       
-    </style>
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  
+  <header>
+    <div class="header">
+        <div class="member-info">
+            <img src="member_picture.jpg" alt="Member Picture">
+            <span>Member Name</span>
+        </div>
+        <div id="logo">
+        <a href="#"><img src="../logo.png" alt="Logo"></a>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchinput" placeholder="looking for..." required>
+            <button onclick="search()">search</button>
+        </div>
+    </div>
+  </header>
     <svg style="display:none;">
         <defs>
             <g id="Dashboard">
@@ -114,16 +50,12 @@
         </defs>
     </svg>
 
-    <div class="strip-container">
-        <!-- Add content for the strip container here -->
-        <p>This is the strip container. You can add any content here.</p>
-    </div>
 
     <nav class="navbar navbar-dark bg-dark flex-column nav__cont">
         <span class="menu-icon">&#9776;</span>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">dasgboard</a>
+                <a class="nav-link" href="#">dashboard</a>
             </li>
 
             <li class="nav-item">
@@ -140,15 +72,7 @@
         </ul>
     </nav>
 
-    <div class="weather-container">
-        <!-- You can add weather information here -->
-        <h2>Weather</h2>
-        <p>Temperature: XX°C</p>
-        <p>Conditions: Sunny</p>
-        <!-- Update this with real weather data -->
-    </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/scripts/search.js"></script>
 </body>
 </html>
