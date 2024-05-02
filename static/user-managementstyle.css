@@ -97,7 +97,7 @@
 
 .search-box button {
     padding: 8px 15px;
-    background-color: #b834ff;
+    background-color: #717dfe;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -124,4 +124,44 @@
     font-size: 16px; 
 }
 
-
+.container {
+    position: absolute;
+    top: 50%;
+    left: 67%;
+    transform: translate(-50%, -50%);
+  }
+  table {
+    width: 800px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.37);
+  }
+  th,
+  td {
+    padding: 15px;
+    background-color: rgba(153, 176, 254, 0.87);
+    color: #ffffff;
+  }
+  th {
+    text-align: left;
+  }
+  thead th {
+    background-color: #5776ff;
+  }
+  tbody tr:hover {
+    background-color: rgba(137, 63, 255, 0.3);
+  }
+  tbody td {
+    position: relative;
+  }
+  tbody td:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(187, 77, 255, 0.2);
+    z-index: -1;
+  }
+  
