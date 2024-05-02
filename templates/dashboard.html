@@ -6,6 +6,9 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -70,12 +73,17 @@
     </nav>
 
     <div class="weather-container">
-        <!-- You can add weather information here -->
-        <h2>Weather</h2>
-        <p>Temperature: XX°C</p>
-        <p>Conditions: Sunny</p>
-        <!-- Update this with real weather data -->
-    </div>
+        <div class="background">
+          <div class="Circle1"></div>
+          <div class="Circle2"></div>
+          <div class="Circle3"></div>
+          <div class="content">
+            <h1 class="Condition"><i class="material-icons sun">wb_sunny</i> Sunny</h1>
+            <h1 class="Temp">72<span id="F">&#8457;</span></h1>
+            <h1 class="Time">09:35</h1>
+            <h1 class="Location"><i class="material-icons locationIcon">place</i> Raleigh, NC</h1>
+          </div>
+        </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
