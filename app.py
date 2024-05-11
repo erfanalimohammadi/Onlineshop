@@ -253,5 +253,3 @@ def reset_password():
 
     return "Failed to update password. Please try again."
 #finish
-=======
->>>>>>> develop
