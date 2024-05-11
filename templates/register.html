@@ -58,7 +58,7 @@
   </div>
     
     <!--ring div starts here-->
-<form action="register" method="post">
+<form action="http://localhost:5000/register" method="post">
   <div class="ring">
     <i style="--clr:#0007c6;"></i>
     <i style="--clr:#a8ffb1;"></i>
@@ -66,19 +66,19 @@
     <div class="login">
       <h2>sign up</h2>
       <div class="inputBx">
-        <input type="text" for="name" placeholder="Name" required>
+        <input type="text" name="Name" placeholder="Name" required>
       </div>
       <div class="inputBx">
-        <input type="text" for="username" placeholder="Username" required>
+        <input type="text" name="Username" placeholder="Username" required>
       </div>
       <div class="inputBx">
-        <input type="number" for="phone-number" placeholder="Phone Number" required>
+        <input type="number" name="Phone-number" placeholder="Phone Number" required>
       </div>
       <div class="inputBx">
-        <input type="email" for="email" placeholder="Email" required>
+        <input type="email" name="Email" placeholder="Email" required>
       </div>
       <div class="inputBx">
-        <input type="password" for="password" placeholder="Password" required>
+        <input type="password" name="Password" placeholder="Password" required>
       </div>
       <div class="inputBx">
         <input type="submit" value="Sign up">
