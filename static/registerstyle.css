@@ -85,8 +85,8 @@ body {
 
 .ring {
   position: relative;
-  width: 570px;
-  height: 570px;
+  width: 577px;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,246 @@
+
+.body{
+    background-color: #202020;
+}
+.nav__cont {
+    position: fixed;
+    width: 60px;
+    top: 12%;
+    height: 100vh;
+    z-index: 100;
+    background-color: #202020;
+    overflow:hidden;
+    transition:width .3s ease;
+    cursor:pointer;
+    box-shadow:4px 7px 10px rgba(0,0,0,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav__cont:hover {
+    width:200px;
+}
+
+.nav__cont:hover .menu-icon {
+    display: none;
+}
+
+.menu-icon {
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 21px;
+    color: white;
+    cursor: pointer;
+    z-index: 101;
+    transform: scale(1.7);
+}
+
+.nav__cont .nav-link {
+    padding: 35px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s;
+}
+
+.nav__cont .nav-link:hover {
+    color: #54a4ff;
+    font-size: 18px;
+    transform: scale(1.1);
+}
+
+.nav__cont:not(:hover) .nav-link {
+    font-size: 0;
+    padding: 0;
+}
+.weather-container{
+    overflow: hidden;
+    z-index: 10;
+    position: relative;
+    margin: 150px auto;
+    height: 90px;
+    width: 300px;
+    background-color: #5067da;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.2);
+}
+
+
+/*  BACKGROUND  */
+
+.Circle1{
+    z-index: 100;
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    right: -20px;
+    top: -30px;
+    border-radius: 50%;
+    background-color:rgba(177, 114, 254, 0.7) ;
+    animation: enlarge;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.Circle2{
+    z-index: 80;
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    right: -50px;
+    top: -70px;
+    border-radius: 50%;
+    background-color:rgba(176, 77, 241, 0.7) ;
+    
+    animation: enlarge;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+.Circle3{
+    z-index: 50;
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    right: -50px;
+    top: -100px;
+    border-radius: 50%;
+    background-color:rgb(69, 127, 254) ;
+    
+    animation: enlarge;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+
+
+/*  CONTENT  */
+
+.sun{
+    z-index: 1000;
+    font-size: 15px !important;
+}
+
+.Condition{
+    z-index: 1000;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    left: 20px;  
+    top: 10px;
+}
+
+.Temp{
+    z-index: 1000;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+    left: 20px;
+    bottom: 5px;
+}
+
+#F{
+    z-index: 1000;
+    font-family: "Roboto",sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+}
+
+
+.Time{
+    z-index: 1000;
+    position: absolute;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    right: 20px;
+    top: 10px;
+}
+
+.locationIcon{
+    z-index: 1000;
+    font-size: 10px !important;
+}
+
+.Location{
+    z-index: 1000;
+    position: absolute;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 200;
+    right: 20px;
+    bottom: 15px;
+}
+
+@keyframes enlarge{
+    50%{
+        transform: scale(1.2);
+    }
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 13%;
+}
+#logo{
+    display: ruby;
+}
+#logo img{
+    width: 10%;
+
+
+}
+.search-box {
+    display: flex;
+}
+
+.search-box input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-box button {
+    padding: 8px 15px;
+    background-color: #b834ff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-box button:hover{
+    background-color: rgba(87, 216, 233, 0.786);
+}
+
+.member-info {
+    display: flex;
+    align-items: center;
+}
+
+.member-info img {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+.member-info span {
+    font-weight: bold; 
+    font-size: 16px; 
+}
+
+

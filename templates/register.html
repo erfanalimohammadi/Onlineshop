@@ -72,13 +72,20 @@
         <input type="text" name="Username" placeholder="Username" required>
       </div>
       <div class="inputBx">
+<<<<<<< HEAD
         <input type="number" name="Phone-number" placeholder="Phone Number" required>
+=======
+        <input type="tel" for="phone-number" placeholder="Phone Number" required>
+>>>>>>> 8173420bb1548e5ae0b3a08359a8efbf2787fc60
       </div>
       <div class="inputBx">
         <input type="email" name="Email" placeholder="Email" required>
       </div>
       <div class="inputBx">
         <input type="password" name="Password" placeholder="Password" required>
+      </div>
+      <div class="inputBx">
+        <input type="password" for="password" id="confirmPassword" placeholder="confirm Password" required>
       </div>
       <div class="inputBx">
         <input type="submit" value="Sign up">
@@ -90,6 +97,19 @@
     </div>
   </div>
 </form>
-  <!--ring div ends here-->
+<script>
+  window.onload = function() {
+      document.getElementById("resetPasswordForm").onsubmit = function(event) {
+          var password = document.getElementById("password").value;
+          var confirmPassword = document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+              alert("Passwords do not match. Please re-enter.");
+              event.preventDefault();
+          }
+      };
+  };
+</script>
+<script src="../scripts/password.js"></script>
 </body>
 </html>
