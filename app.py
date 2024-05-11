@@ -202,3 +202,53 @@ def new_password():
 
 if __name__ == '__main__':
     app.run(debug=True)
+<<<<<<< HEAD
+
+@app.route('/loginmain', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # اینجا باید بررسی اطلاعات کاربر و اعتبارسنجی انجام شود
+        # به عنوان مثال:
+        if username == 'admin' and password == 'password':
+            return "Login successful!"
+        else:
+            return "Invalid username or password."
+
+    return render_template('loginmain.html')
+
+
+@app.route('/forgotpassword', methods=['POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        
+        # اینجا باید عملیات بازیابی رمز عبور انجام شود
+        # به عنوان مثال، می‌توانید ایمیل را بررسی کنید و یک لینک بازیابی رمز عبور ارسال کنید
+
+        # در انتها پیامی به کاربر نمایش داده می‌شود
+        return "An email has been sent to {} for password reset.".format(email)
+
+    # اگر درخواست POST نبود، به صفحه forgotpassword برمی‌گردیم
+    return render_template('forgotpassword.html')
+
+@app.route('/forgotpassword2', methods=['POST'])
+def reset_password():
+    if request.method == 'POST':
+        # دریافت ایمیل و رمز عبور جدید از فرم
+        email = request.form['email']
+        new_password = request.form['password']
+
+        # انجام فرآیند تغییر رمز عبور، مثلا به کمک کتابخانه‌هایی مانند Flask-Security
+        # اینجا یک مثال ساده از تغییر رمز عبور را ارائه می‌دهم:
+        # یافتن کاربر با استفاده از ایمیل و اعمال تغییرات
+        user = User.query.filter_by(email=email).first()
+        if user:
+            # تغییر رمز عبور کاربر
+            user.password = generate_password_hash(new_password)
+            db.session.commit()
+            return "Password has been successfully updated!"
+
+    return "Failed to update password. Please try again."
