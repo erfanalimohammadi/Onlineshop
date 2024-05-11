@@ -203,6 +203,8 @@ def new_password():
 if __name__ == '__main__':
     app.run(debug=True)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 @app.route('/loginmain', methods=['POST'])
 def login():
@@ -255,3 +257,4 @@ def reset_password():
 
     
 #finish
+>>>>>>> develop
