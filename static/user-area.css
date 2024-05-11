@@ -1,3 +1,4 @@
+
 #user-area-menu {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,7 +8,7 @@
     justify-content: flex-end;
 }
 
-.container {
+.ucontainer {
     position: fixed;
     right: 20px;
     width: 300px;
@@ -17,16 +18,18 @@
     
 }
 
-h2 {
+.menu-items h2 {
     font: italic small-caps bold 16px/2 cursive;
     font-size: 200%;
     position: relative;
     text-align: center;
     color: #0007c6;;
+    margin-bottom: -0.5em;
 }
 
 .menu-items {
     list-style-type: none;
+    margin-top: 100px;
     
 }
 
@@ -49,8 +52,13 @@ h2 {
     border-bottom: none;
 }
 
+.menu-item:last-child:hover {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
 .menu-item:hover {
     background-color: rgba(87, 216, 233, 0.786);
+    
 }
 
 .icon {
