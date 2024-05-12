@@ -10,12 +10,23 @@ def check_and_create_database(host, user, password, database):
             database=database
         )
         cursor = db_connection.cursor()
-        cursor.execute("SELECT 1 FROM customers LIMIT 1") 
-        row = cursor.fetchone()
-        if row:
+        
+        # بررسی وجود جدول customers
+        cursor.execute("SHOW TABLES LIKE 'customers'")
+        customers_exist = cursor.fetchone()
+        if customers_exist:
             print("Table 'customers' already exists!")
         else:
-            create_table(cursor)  
+            create_table(cursor, "customers")  
+
+        # بررسی وجود جدول admin
+        cursor.execute("SHOW TABLES LIKE 'admin'")
+        admin_exist = cursor.fetchone()
+        if admin_exist:
+            print("Table 'admin' already exists!")
+        else:
+            create_table(cursor, "admin")  
+
         db_connection.commit()
         print("Successfully connected to database:", database)
     except mysql.connector.Error as err:
@@ -41,7 +52,8 @@ def check_and_create_database(host, user, password, database):
             )
             cursor = db_connection.cursor()
 
-            create_table(cursor) 
+            create_table(cursor, "customers") 
+            create_table(cursor, "admin")
             db_connection.commit()
             print("Successfully connected to newly created database:", database)
         else:
@@ -51,10 +63,20 @@ def check_and_create_database(host, user, password, database):
             cursor.close()
             db_connection.close()
 
-def create_table(cursor):
+def create_table(cursor, table_name):
     try:
-        cursor.execute("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(255), Username VARCHAR(255), Phone_number VARCHAR(255), Email VARCHAR(255), Password VARCHAR(255))")
-        print("Table 'customers' has been successfully created!")
+        if table_name == "customers":
+            cursor.execute("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(255), Username VARCHAR(255), Phone_number VARCHAR(255), Email VARCHAR(255), Password VARCHAR(255))")
+            print("Table 'customers' has been successfully created!")
+            # افزودن رکورد پیشفرض به جدول customers
+            cursor.execute("INSERT INTO customers (Name, Username, Phone_number, Email, Password) VALUES (%s, %s, %s, %s, %s)", ("user", "User1", "11111111", "user@example.com", "user1111"))
+            print("Default data has been inserted into 'customers' table.")
+        elif table_name == "admin":
+            cursor.execute("CREATE TABLE admin (id INT AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(255), Username VARCHAR(255), Email VARCHAR(255), Password VARCHAR(255))")
+            print("Table 'admin' has been successfully created!")
+            # افزودن رکورد پیشفرض به جدول admin
+            cursor.execute("INSERT INTO admin (Name, Username, Email, Password) VALUES (%s, %s, %s, %s)", ("admin", "admin1", "admin@example.com", "admin1111"))
+            print("Default data has been inserted into 'admin' table.")
     except mysql.connector.Error as error:
         print("Error creating table:", error)
 
@@ -64,6 +86,7 @@ password = "123456789"
 database = "online_shop"
 
 check_and_create_database(host, user, password, database)
+
 
 app = Flask(__name__)
 
@@ -82,14 +105,20 @@ def loginmain():
                 database="online_shop"
             )
             cursor = db_connection.cursor()
-
+            
             cursor.execute("SELECT * FROM customers WHERE Username = %s AND Password = %s", (Username, Password))
             user = cursor.fetchone()
 
             if user:
-                return redirect('/profile')
+                return redirect('/user-area')
             else:
-                return "Invalid Username or Password"
+                # Search in admin table
+                cursor.execute("SELECT * FROM admin WHERE Username = %s AND Password = %s", (Username, Password))
+                admin = cursor.fetchone()
+                if admin:
+                    return redirect('/user-management')
+                else:
+                    return "Invalid Username or Password"
 
         except mysql.connector.Error as err:
             return "Database error: {}".format(err)
@@ -99,6 +128,7 @@ def loginmain():
                 cursor.close()
                 db_connection.close()
     return render_template('loginmain.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -127,9 +157,9 @@ def register():
                 cursor.close()
                 db_connection.close()
 
-@app.route('/profile')
+@app.route('/user-area')
 def profile():
-    return render_template('profile.html')
+    return render_template('user-area.html')
 
 @app.route('/forgotpassword', methods=['GET', 'POST'])
 def forgotpassword():
@@ -199,62 +229,9 @@ def new_password():
         # نمایش فرم جدید
         return render_template('forgotpassword2.html')
 
+@app.route('/user-management')
+def user_management():
+    return render_template('user-management.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-@app.route('/loginmain', methods=['POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # اینجا باید بررسی اطلاعات کاربر و اعتبارسنجی انجام شود
-        # به عنوان مثال:
-        if username == 'admin' and password == 'password':
-            return "Login successful!"
-        else:
-            return "Invalid username or password."
-
-    return render_template('loginmain.html')
-
-
-@app.route('/forgotpassword', methods=['POST'])
-def forgot_password():
-    if request.method == 'POST':
-        email = request.form['email']
-        
-        # اینجا باید عملیات بازیابی رمز عبور انجام شود
-        # به عنوان مثال، می‌توانید ایمیل را بررسی کنید و یک لینک بازیابی رمز عبور ارسال کنید
-
-        # در انتها پیامی به کاربر نمایش داده می‌شود
-        return "An email has been sent to {} for password reset.".format(email)
-
-    # اگر درخواست POST نبود، به صفحه forgotpassword برمی‌گردیم
-    return render_template('forgotpassword.html')
-
-@app.route('/forgotpassword2', methods=['POST'])
-def reset_password():
-    if request.method == 'POST':
-        # دریافت ایمیل و رمز عبور جدید از فرم
-        email = request.form['email']
-        new_password = request.form['password']
-
-        # انجام فرآیند تغییر رمز عبور، مثلا به کمک کتابخانه‌هایی مانند Flask-Security
-        # اینجا یک مثال ساده از تغییر رمز عبور را ارائه می‌دهم:
-        # یافتن کاربر با استفاده از ایمیل و اعمال تغییرات
-        user = User.query.filter_by(email=email).first()
-        if user:
-            # تغییر رمز عبور کاربر
-            user.password = generate_password_hash(new_password)
-            db.session.commit()
-            return "Password has been successfully updated!"
-
-    return "Failed to update password. Please try again."
-
-    
-#finish
->>>>>>> develop
