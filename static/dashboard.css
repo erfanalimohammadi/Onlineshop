@@ -18,6 +18,84 @@
     justify-content: center;
 }
 
+/* For small screens */
+@media only screen and (max-width: 600px) {
+    .nav__cont {
+
+        height: 100%;
+    }
+    .nav__cont:hover {
+        width: 100%; /* Keep full width on hover for small screens */
+    }
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%) scale(1.7);
+    }
+    .nav__cont .nav-link {
+        padding: 15px;
+        font-size: 14px; /* Adjust font size */
+    }
+    .weather-container {
+        margin: 100px ; /* Adjust margin as needed */
+        max-width: 200px;
+    }
+    .header {
+        height: auto; /* Auto height for small screens */
+    }
+    #logo img {
+        width: 80px; /* Adjust logo size */
+    }
+}
+
+/* For medium screens */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .nav__cont {
+        width: 80px;
+        top: 12%;
+    }
+    .nav__cont:hover {
+        width: 200px;
+    }
+    .weather-container{
+        margin: 200px auto;
+    }
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%) scale(1.7);
+    }
+    .nav__cont .nav-link {
+        padding: 25px;
+        font-size: 16px;
+    }
+}
+
+/* For large screens */
+@media only screen and (min-width: 1025px) {
+    .nav__cont {
+        width: 60px;
+        top: 12%;
+    }
+    .nav__cont:hover {
+        width: 200px;
+    }
+    .menu-icon {
+        display: none;
+    }
+    .weather-container{
+        margin: 200px auto;
+    }
+    .nav__cont .nav-link {
+        padding: 35px;
+        font-size: 16px;
+    }
+}
+
 .nav__cont:hover {
     width:200px;
 }
@@ -59,7 +137,6 @@
     overflow: hidden;
     z-index: 10;
     position: relative;
-    margin: 150px auto;
     height: 90px;
     width: 300px;
     background-color: #5067da;
@@ -198,9 +275,10 @@
 }
 #logo{
     display: ruby;
+    margin-left: 7%;
 }
 #logo img{
-    width: 10%;
+    width: 80px;
 
 
 }
