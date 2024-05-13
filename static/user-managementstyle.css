@@ -79,9 +79,11 @@
 }
 #logo{
     display: ruby;
+    margin-left: 7%;
 }
 #logo img{
-    width: 10%;
+    width: 80px;
+    
 
 
 }
