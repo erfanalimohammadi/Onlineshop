@@ -1,5 +1,6 @@
+from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
-from flask import Flask, request, render_template, redirect
+from jinja2 import Template
 
 def check_and_create_database(host, user, password, database):
     try:
@@ -87,8 +88,50 @@ database = "online_shop"
 
 check_and_create_database(host, user, password, database)
 
-
 app = Flask(__name__)
+
+"""
+@app.route('/loginmain', methods=['GET', 'POST'])
+def loginmain():
+    member_name = None  # Initialize member_name outside try block
+    admin_name = None  # Initialize admin_name outside try block
+    if request.method == 'POST':
+        Username = request.form['Username']
+        Password = request.form['Password']
+
+        try:
+            db_connection = mysql.connector.connect(
+                host="localhost",
+                user="onlineshop",
+                password="123456789",
+                database="online_shop"
+            )
+            cursor = db_connection.cursor()
+            
+            cursor.execute("SELECT * FROM customers WHERE Username = %s AND Password = %s", (Username, Password))
+            user = cursor.fetchone()
+
+            if user:
+                member_name = user[1]  # Assuming the name is stored in the second column
+                return redirect(url_for('profile', member_name=member_name))
+            else:
+                cursor.execute("SELECT * FROM admin WHERE Username = %s AND Password = %s", (Username, Password))
+                admin = cursor.fetchone()
+                if admin:
+                    admin_name = admin[1]  # Assuming the name is stored in the second column
+                    return redirect(('user-management', admin_name=admin_name))
+                else:
+                    flash('Invalid Username or Password', 'error')
+
+        except mysql.connector.Error as err:
+            flash('Database error: {}'.format(err), 'error')
+
+        finally:
+            if 'db_connection' in locals() and db_connection.is_connected():
+                cursor.close()
+                db_connection.close()
+
+    return render_template('loginmain.html')
 
 @app.route('/loginmain', methods=['GET', 'POST'])
 def loginmain():
@@ -128,7 +171,50 @@ def loginmain():
                 cursor.close()
                 db_connection.close()
     return render_template('loginmain.html')
+"""
 
+@app.route('/loginmain', methods=['GET', 'POST'])
+def loginmain():
+    member_name = None  # Initialize member_name outside try block
+    admin_name = None  # Initialize admin_name outside try block
+    if request.method == 'POST':
+        Username = request.form['Username']
+        Password = request.form['Password']
+
+        try:
+            db_connection = mysql.connector.connect(
+                host="localhost",
+                user="onlineshop",
+                password="123456789",
+                database="online_shop"
+            )
+            cursor = db_connection.cursor()
+            
+            cursor.execute("SELECT * FROM customers WHERE Username = %s AND Password = %s", (Username, Password))
+            user = cursor.fetchone()
+
+            if user:
+                member_name = user[1]  # Assuming the name is stored in the first column
+                return render_template('user-area.html', member_name=member_name)
+            else:
+                cursor.execute("SELECT * FROM admin WHERE Username = %s AND Password = %s", (Username, Password))
+                admin = cursor.fetchone()
+                if admin:
+                    admin_name = admin[1]  # Assuming the name is stored in the second column
+                    return render_template('user-management.html', admin_name=admin_name)
+                    #return redirect('/user-management')
+                else:
+                    flash('Invalid Username or Password', 'error')
+
+        except mysql.connector.Error as err:
+            flash('Database error: {}'.format(err), 'error')
+
+        finally:
+            if 'db_connection' in locals() and db_connection.is_connected():
+                cursor.close()
+                db_connection.close()
+
+    return render_template('loginmain.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
