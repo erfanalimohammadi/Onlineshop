@@ -135,7 +135,7 @@ def register():
     if request.method == 'POST':
         Name = request.form['Name']
         Username = request.form['Username']
-        Phone_number = request.form['Phone-number']
+        Phone_number = request.form['Phone_number']
         Email = request.form['Email']
         Password = request.form['Password']
 
