@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
 from jinja2 import Template
 
+import mysql.connector
+
 def check_and_create_database(host, user, password, database):
     try:
         db_connection = mysql.connector.connect(
@@ -87,6 +89,7 @@ password = "123456789"
 database = "online_shop"
 
 check_and_create_database(host, user, password, database)
+
 
 app = Flask(__name__)
 
