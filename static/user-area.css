@@ -9,8 +9,9 @@
 }
 
 .ucontainer {
-    position: fixed;
+    position: absolute;
     right: 20px;
+    top: 15%;
     width: 300px;
     background-color: #000000;
     border-radius: 25px;
@@ -29,7 +30,7 @@
 
 .menu-items {
     list-style-type: none;
-    margin-top: 100px;
+    
     
 }
 
@@ -70,12 +71,12 @@
     margin: 0;
 }
 
-a {
+.menu-item a {
     text-decoration: none;
     color: inherit;
 }
 
-a:hover {
+.menu-item a:hover {
     text-decoration:underline ;
     text-decoration-color: #b834ff;
 }
